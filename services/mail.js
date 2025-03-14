@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 
 async function verifyEmail(email, token) {
-    const verificationLink = `http://localhost:4111/api/verify/${token}`
+    const verificationLink = `http://localhost:5173/api/verify/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -24,7 +24,7 @@ async function verifyEmail(email, token) {
 };
 
 async function resetEmail(email, token) {
-    const resetLink = `http://localhost:4111/api/reset-password/${token}`
+    const resetLink = `http://localhost:5173/api/reset-password/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,

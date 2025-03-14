@@ -15,10 +15,10 @@ const port = PORT;
 const app = express();
 
 database();
+app.use(cors());
 
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
 app.use("/api", patientRouter)
 
 app.listen(port, () => {
