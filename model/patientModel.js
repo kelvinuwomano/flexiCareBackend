@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 
 const patientSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
+    fullName: String,
     email: {
         type: String,
         required: true,
@@ -25,7 +24,11 @@ const patientSchema = new mongoose.Schema({
     verificationToken: String,
     verificationTokenExpires: Date,
     resetToken: String,
-    resetTokenExpires: Date
+    resetTokenExpires: Date,
+    profile: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "profile"
+    }
 });
 
 module.exports = mongoose.model("patient", patientSchema)

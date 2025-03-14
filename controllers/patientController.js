@@ -7,7 +7,7 @@ const { verifyEmail, resetEmail } = require("../services/mail");
 
 exports.signUp = async (req, res) => {
     try {
-        const {firstName, lastName, phoneNo, email, password} = req.body;
+        const {fullName, phoneNo, email, password} = req.body;
 
         const checkEmail = await patientModel.findOne({email});
         if (checkEmail) return res.status(400).json({message: "Email already exists"});
@@ -20,8 +20,7 @@ exports.signUp = async (req, res) => {
         const verificationTokenExpires = await Date.now() + 60 * 60 * 1000;
 
         const newPatient = await patientModel.create({
-            firstName,
-            lastName,
+            fullName,
             phoneNo,
             email,
             password : hashPassword,
@@ -68,7 +67,7 @@ exports.login = async (req, res) => {
         
         if (!checkEmail.isVerified) return res.status(400).json({message: "Please verify your email"})
 
-        return res.status(200).json({message: "Login successful", firstName: checkEmail.firstName, lastName: checkEmail.lastName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo })
+        return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo })
     
     } catch (error) {
         return res.status(500).json({message: "An error occured", error: error.message})
