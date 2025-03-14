@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 
 async function verifyEmail(email, token) {
-    const verificationLink = `http://localhost:5173/api/verify/${token}`
+    const verificationLink = `https://flexicarebackend.onrender.com/api/verify/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
