@@ -21,14 +21,17 @@ const patientSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    role: {type: String, default: "user"},
     verificationToken: String,
     verificationTokenExpires: Date,
     resetToken: String,
     resetTokenExpires: Date,
     profile: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "profile"
+        ref: "profile",
     }
-});
+},
+{timestamps: true}
+);
 
 module.exports = mongoose.model("patient", patientSchema)

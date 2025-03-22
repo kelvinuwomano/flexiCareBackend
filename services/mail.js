@@ -11,7 +11,20 @@ const transporter = nodemailer.createTransport({
 
 
 async function verifyEmail(email, token) {
-    const verificationLink = `http://localhost:5173/api/verify/${token}`
+    const verificationLink = `https://flexi-care.vercel.app/api/verify/${token}`
+
+    await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Verify your email from FlexiCare",
+        html: `<p>Click the link below to verify your email:</p>
+        ${verificationLink}`
+    });
+    console.log("An email was sent to :", email)
+};
+
+async function verifPharmacyEmail(email, token) {
+    const verificationLink = `https://flexi-care.vercel.app/api/pharmacy/verify/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -36,4 +49,4 @@ async function resetEmail(email, token) {
     console.log("An email was sent to email:", email)
 }
 
-module.exports = {verifyEmail, resetEmail}
+module.exports = {verifyEmail, resetEmail, verifPharmacyEmail}

@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const patientModel = require("../model/patientModel");
 const { verifyEmail, resetEmail } = require("../services/mail");
+const generateToken = require("../utils/generate");
+const pharmacyModel = require("../model/pharmacyModel");
 
 
 
@@ -67,7 +69,9 @@ exports.login = async (req, res) => {
         
         if (!checkEmail.isVerified) return res.status(400).json({message: "Please verify your email"})
 
-        return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo })
+        const token = generateToken(checkEmail._id, checkEmail.role)
+
+        return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo, token})
     
     } catch (error) {
         return res.status(500).json({message: "An error occured", error: error.message})
@@ -81,7 +85,7 @@ exports.forgotPassword = async (req, res) => {
         if (!user) return res.status(400).json({message: "User not found"});
         
         user.resetToken = await crypto.randomBytes(32).toString("hex");
-        user.resetTokenExpires = await Date.now() + 10 * 60 * 1000;
+        user.resetTokenExpires = await Date.now() +  10 * 60 * 1000;
         await user.save();
 
         await resetEmail(email, user.resetToken)
@@ -108,4 +112,14 @@ exports.resetPassword = async (req, res) => {
     } catch (error) {
         return res.status(400).json({message:"An error occured" , error: error.message})
     }
-}
+};
+
+
+exports.getAllPharmacy = async (req, res) => {
+    try {
+        const allPharmacy = await pharmacyModel.find();
+        return res.status(200).json({message: "All pharmacies", data: allPharmacy})
+    } catch (error) {
+        return res.status(500).json({message: "An error occured", error: error.message})
+    }
+};

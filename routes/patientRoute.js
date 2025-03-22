@@ -1,5 +1,7 @@
 const express = require("express");
-const { signUp, verificationEmail, login, forgotPassword, resetPassword } = require("../controllers/patientController");
+const { signUp, verificationEmail, login, forgotPassword, resetPassword, getAllPharmacy } = require("../controllers/patientController");
+const { getNearbyPharmacy } = require("../controllers/pharmacyController");
+
 
 
 
@@ -10,6 +12,8 @@ patientRouter.get("/verify/:token", verificationEmail)
 patientRouter.post("/login", login)
 patientRouter.post("/forgot-password", forgotPassword)
 patientRouter.post("/reset-password/:token", resetPassword)
+patientRouter.get("/all-pharmacy", getAllPharmacy)
+// patientRouter.get("/for-you", getNearbyPharmacy)
 
 
 
