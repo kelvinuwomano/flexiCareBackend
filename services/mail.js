@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 
 async function verifyEmail(email, token) {
-    const verificationLink = `https://flexi-care.vercel.app/api/verify/${token}`
+    const verificationLink = `https://flexi-care.vercel.app/verify/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -25,7 +25,7 @@ async function verifyEmail(email, token) {
 };
 
 async function verifPharmacyEmail(email, token) {
-    const verificationLink = `https://flexi-care.vercel.app/api/pharmacy/verify/${token}`
+    const verificationLink = `https://flexi-care.vercel.app/pharmacy/verify/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -39,7 +39,7 @@ async function verifPharmacyEmail(email, token) {
 };
 
 async function resetEmail(email, token) {
-    const resetLink = `http://localhost:5173/api/reset-password/${token}`
+    const resetLink = `http://localhost:5173/reset-password/${token}`
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
