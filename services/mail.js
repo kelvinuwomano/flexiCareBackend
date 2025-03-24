@@ -17,8 +17,9 @@ async function verifyEmail(email, token) {
         from: process.env.EMAIL_USER,
         to: email,
         subject: "Verify your email from FlexiCare",
-        html: `<p>Click the link below to verify your email:</p>
-        <button>${verificationLink}</button>`
+        html: `<p>Click the button below to verify your email:</p>
+            <a href="${verificationLink}" style="display: inline-block; padding: 10px 20px; color: white; background: blue; text-decoration: none;">Verify Email</a>
+            <p>This link will expire in 1 hour.</p>`
     });
     console.log("An email was sent to :", email)
 };
