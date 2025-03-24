@@ -61,3 +61,11 @@ exports.getAllPharmacy = async (req, res) => {
         return res.status(500).json({message: "An error occured", error: error.message})
     }
 };
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const allUsers = 
+    } catch (error) {
+        
+    }
+}
