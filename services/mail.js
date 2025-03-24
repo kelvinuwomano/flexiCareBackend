@@ -18,7 +18,7 @@ async function verifyEmail(email, token) {
         to: email,
         subject: "Verify your email from FlexiCare",
         html: `<p>Click the link below to verify your email:</p>
-        ${verificationLink}`
+        <button>${verificationLink}</button>`
     });
     console.log("An email was sent to :", email)
 };
