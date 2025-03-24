@@ -62,10 +62,10 @@ exports.getAllPharmacy = async (req, res) => {
     }
 };
 
-exports.getAllUsers = async (req, res) => {
-    try {
-        const allUsers = 
-    } catch (error) {
+// exports.getAllUsers = async (req, res) => {
+//     try {
+//         const allUsers = 
+//     } catch (error) {
         
-    }
-}
+//     }
+// }
