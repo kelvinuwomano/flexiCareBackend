@@ -117,7 +117,7 @@ exports.resetPassword = async (req, res) => {
 
 exports.getAllPharmacy = async (req, res) => {
     try {
-        const allPharmacy = await pharmacyModel.find();
+        const allPharmacy = await pharmacyModel.find().select("-password");
         return res.status(200).json({message: "All pharmacies", data: allPharmacy})
     } catch (error) {
         return res.status(500).json({message: "An error occured", error: error.message})
