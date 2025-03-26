@@ -74,7 +74,7 @@ exports.login = async (req, res) => {
         return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo, token})
     
     } catch (error) {
-        return res.status(500).json({message: "An error occured", error: })
+        return res.status(500).json({message: "An error occured", error })
     }
 };
 
@@ -91,7 +91,7 @@ exports.forgotPassword = async (req, res) => {
         await resetEmail(email, user.resetToken)
         return res.status(200).json({message:"reset link sent"})
     } catch (error) {
-        return res.status(400).json({message:"An error occured", error: error.message})
+        return res.status(400).json({message:"An error occured", error})
     }
 };
 
@@ -110,7 +110,7 @@ exports.resetPassword = async (req, res) => {
 
         return res.status(200).json({message:"Password reset successfully"})
     } catch (error) {
-        return res.status(400).json({message:"An error occured" , error: error.message})
+        return res.status(400).json({message:"An error occured" , error})
     }
 };
 
@@ -120,6 +120,6 @@ exports.getAllPharmacy = async (req, res) => {
         const allPharmacy = await pharmacyModel.find().select("-password");
         return res.status(200).json({message: "All pharmacies", data: allPharmacy})
     } catch (error) {
-        return res.status(500).json({message: "An error occured", error: error.message})
+        return res.status(500).json({message: "An error occured", error})
     }
 };
