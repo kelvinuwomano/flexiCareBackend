@@ -34,7 +34,7 @@ exports.signUp = async (req, res) => {
 
         return res.status(200).json({message: "User Created! Please verify your email"})
     } catch (error) {
-        return res.status(500).json({message:"An error occured", error: error.message})
+        return res.status(500).json({message:"An error occured", error})
     }
 };
 
@@ -53,7 +53,7 @@ exports.verificationEmail = async (req, res) => {
         await getPatient.save();
         return res.status(200).json({message: "User verified!! You can now login"})
     } catch (error) {
-        return res.status(500).json({message: "An error occured", error: error.message})
+        return res.status(500).json({message: "An error occured", error})
     }
 };
 
@@ -74,7 +74,7 @@ exports.login = async (req, res) => {
         return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo, token})
     
     } catch (error) {
-        return res.status(500).json({message: "An error occured", error: error.message})
+        return res.status(500).json({message: "An error occured", error: })
     }
 };
 
