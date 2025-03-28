@@ -5,6 +5,7 @@ const { verifyEmail, verifPharmacyEmail } = require("../services/mail");
 const generateToken = require("../utils/generate");
 const profileModel = require("../model/profileModel");
 const pharmacyProfile = require("../model/pharmacyProfile");
+const appointment = require("../model/appointment");
 
 
 exports.createPharmacy = async (req, res) => {
@@ -71,6 +72,24 @@ exports.signin = async (req, res) => {
         return res.status(500).json({message: "An error occured", error: error.message})
     }
 };
+
+exports.updateAppointmentStatus = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {status} = req.body;
+
+        const validStatus =  ["Pending", "Confirmed", "Cancelled", "Completed"]
+
+        if (!validStatus.includes(status)) return res.status(400).json({ message: "Invalid status." });
+
+        const update = await appointment.findByIdAndUpdate(id,{status},{new: true});
+
+        if (!update) return res.status(400).json({message: "Appointment not found"})
+        return res.status(200).json({message: "Status update successfully!", update})
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred", error: error.message });
+    }
+}
 
 
 // exports.getNearbyPharmacy = async (req, res) => {

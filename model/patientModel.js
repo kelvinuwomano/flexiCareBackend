@@ -26,6 +26,10 @@ const patientSchema = new mongoose.Schema({
     verificationTokenExpires: Date,
     resetToken: String,
     resetTokenExpires: Date,
+    appointment: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "appointment"
+    }],
     profile: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "profile",

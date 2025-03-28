@@ -21,6 +21,10 @@ const pharmacySchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    appointment: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "appointment"
+        }],
     verificationToken: String,
     verificationTokenExpires: Date,
     resetToken: String,
