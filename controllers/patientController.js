@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, checkEmail.password)
         if (!isMatch) return res.status(400).json({message: "Incorrect password"})
         
-        if (!checkEmail.isVerified) return res.status(400).json({message: "Please verify your email"})
+        // if (!checkEmail.isVerified) return res.status(400).json({message: "Please verify your email"})
 
         const token = generateToken(checkEmail._id, checkEmail.role)
 
