@@ -69,7 +69,7 @@ exports.login = async (req, res) => {
         
         if (!checkEmail.isVerified) return res.status(400).json({message: "Please verify your email"})
 
-        // const token = generateToken(checkEmail._id, checkEmail.role)
+        const token = generateToken(checkEmail._id, checkEmail.role)
 
         return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo, token})
     
