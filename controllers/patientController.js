@@ -74,7 +74,7 @@ exports.login = async (req, res) => {
         return res.status(200).json({message: "Login successful", fullName: checkEmail.fullName, email: checkEmail.email, id: checkEmail._id, phoneNo: checkEmail.phoneNo, token})
     
     } catch (error) {
-        return res.status(500).json({message: "An error occured", error })
+        // return res.status(500).json({message: "An error occured", error })
         console.log(error)
     }
 };
