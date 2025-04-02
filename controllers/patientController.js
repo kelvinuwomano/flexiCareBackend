@@ -71,7 +71,7 @@ exports.login = async (req, res) => {
 
         const token = generateToken(checkEmail._id, checkEmail.role)
 
-        return res.status(200).json({message: "Login successful", checkEmail})
+        return res.status(200).json({message: "Login successful", checkEmail, token})
     
     } catch (error) {
         console.log(error)
