@@ -4,10 +4,7 @@ const patientModel = require("../model/patientModel");
 const pharmacyModel = require("../model/pharmacyModel");
 
 
-const appointmentModel = require("../models/appointment");
-const patientModel = require("../models/patient");
-const pharmacyModel = require("../models/pharmacy");
-const mongoose = require("mongoose");
+
 
 exports.bookAppointment = async (req, res) => {
     try {
