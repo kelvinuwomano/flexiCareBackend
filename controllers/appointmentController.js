@@ -9,6 +9,8 @@ const pharmacyModel = require("../model/pharmacyModel");
 exports.bookAppointment = async (req, res) => {
     try {
         const patientId = req.user.id; // Extracting patientId from JWT
+
+        console.log(patientId)
         const { pharmacyId, startDate, endDate, time } = req.body;
 
         if (!patientId || !pharmacyId || !startDate || !endDate || !time) {
