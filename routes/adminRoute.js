@@ -3,6 +3,7 @@ const { createAdmin, getOneUser, getAllPharmacy, getAllUsers, loginAdmin } = req
 
 
 
+
 const adminRouter = express.Router();
 
 adminRouter.post("/create", createAdmin)
