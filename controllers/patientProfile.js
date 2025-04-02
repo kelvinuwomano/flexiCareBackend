@@ -32,3 +32,17 @@ exports.createOrUpdateProfile = async (req, res) => {
         return res.status(500).json({message: "An error occurred", error: error.message})
     }
 };
+
+exports.getProfile = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const findProfile = await profileModel.findById(id);
+
+        if (!findProfile) return res.status(400).json({message: "User not found"});
+
+        return res.status(200).json({message: "Gotten profile successfully", data: findProfile});
+
+    } catch (error) {
+        return res.status(500).json({message: "An error occurred", error})
+    }
+}

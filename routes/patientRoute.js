@@ -16,7 +16,7 @@ patientRouter.post("/forgot-password", forgotPassword)
 patientRouter.post("/reset-password/:token", resetPassword)
 patientRouter.get("/all-pharmacy", getAllPharmacy)
 patientRouter.post("/book-appointment", protect, bookAppointment)
-patientRouter.get("/all-appointments/:userId", getAllAppointment)
+patientRouter.get("/all-appointments", protect, getAllAppointment)
 patientRouter.delete("/cancel-appointment/:id", cancelAppointment)
 // patientRouter.get("/for-you", getNearbyPharmacy)
 

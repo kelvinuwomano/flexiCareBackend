@@ -24,7 +24,7 @@ exports.bookAppointment = async (req, res) => {
             return res.status(400).json({ message: "Invalid patient or pharmacy" });
         }
 
-        const newAppointment = new appointmentModel({
+        const newAppointment = new appointment({
             patientId,
             pharmacyId,
             startDate,
@@ -53,7 +53,7 @@ exports.bookAppointment = async (req, res) => {
 
 exports.getAllAppointment = async (req, res) => {
   try {
-    const {userId} = req.params;
+    const userId = req.user.id;
     const allAppointment = await appointment.find({patientId:userId}).populate({
         path:"pharmacyId",
         select:"name  profile"
