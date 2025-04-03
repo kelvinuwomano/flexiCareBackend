@@ -69,7 +69,7 @@ exports.getAllAppointment = async (req, res) => {
 
 exports.getAllPharmacyAppointments = async (req, res) => {
     try {
-      const {pharmacyId} = req.params;
+      const {pharmacyId} = req.user.id;
       const allAppointment = await appointment.find({pharmacyId: pharmacyId}).populate({
           path:"pharmacyId",
           select:"name  profile"
