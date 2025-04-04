@@ -69,7 +69,7 @@ exports.getAllAppointment = async (req, res) => {
 
 exports.getAllPharmacyAppointments = async (req, res) => {
     try {
-      const {pharmacyId} = req.user.id;
+      const pharmacyId = req.user.id;
       const allAppointment = await appointment.find({pharmacyId: pharmacyId}).populate({
           path:"pharmacyId",
           select:"name  profile"
@@ -77,6 +77,7 @@ exports.getAllPharmacyAppointments = async (req, res) => {
           path: "patientId",
           select: "name  profile"
       })
+      console.log(allAppointment)
       return res.status(200).json({allAppointment})
     } catch (error) {
       return res.status(500).json({message: "An error occurred", error: error.message})
